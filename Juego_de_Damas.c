@@ -4,40 +4,52 @@
 #define SIZE 8           // Tamaño del tablero 
 #define PIEZA 12        // Numero de piezas X y O
 #define TURNOS 10        //Numero de turnos
-#define X_PIEZA 'X'
-#define O_PIEZA 'O'
 
-
-typedef struct {
-    int row;  // Fila de la posición
-    int col;  // Columna de la posición
-} Posicion;
-
-void boardin(int *board) {
-    int i;
-    for (i = 0; i < PIEZA; i++) {
-        
+void boardIn(int *board) {
+    int i,j;
+    for (i=0 ; i < SIZE; i++){
+        for (j=0; j< SIZE; j++){
+            *(board + i * 8 +j) = ' ';
+            if((i+j) %2 ==0){
+                *(board + i * 8 +j) = '█';
+            }
+        }
     }
+
+    i,j =0;
+    //Llenamos las X
+    for(i; i < 3; i++)
+        for(j; j<8; j++)
+            if((i+j) % 2 !=0){
+                *(board + i * 8 +j) = 'X';
+            }
+
+    //Llenamos las O
+    i = 5;
+    j = 0;
+    for(i; i < 8; i++)
+        for(j; j<8; j++)
+            if((i+j) % 2 !=0){
+                *(board + i * 8 +j) = 'O';
+            }
 }
 
 void printBoard(int *board) {
     int i, j;
     printf("\nTablero:\n");
-    
-    
     for (i = 0; i < SIZE; i++) {      //for para recorrer renglones y columnas
         for (j = 0; j < SIZE; j++) {
-           
-            char c = (*(board + i * SIZE + j) == X_PIEZA) ? 'X' : (*(board + i * SIZE + j) == O_PIEZA) ? 'O' : '.';
-            printf("%c ", c);  
+            printf("|%c", *(board + i * 8 + j));
         }
-        printf("\n");
+        printf("|\n");
     }
 }
 
 
+
 int main() {
-    int board[SIZE * SIZE] = { 0 };   //todas las fichas se inicializan en 0
+    char board[SIZE * SIZE];
+    /*
     char turno_pieza;
 
     int turn;
@@ -51,8 +63,10 @@ int main() {
         getchar();
 
        }
+       */
 
-
+      boardIn((char*)board);
+      printBoard((char*)board);
 
 
 }
