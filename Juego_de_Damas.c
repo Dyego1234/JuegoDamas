@@ -5,7 +5,7 @@
 #define PIEZA 12        // Numero de piezas X y O
 #define TURNOS 10        //Numero de turnos
 
-void boardIn(int *board) {
+void boardIn(char *board) {
     int i,j;
     for (i=0 ; i < SIZE; i++){
         for (j=0; j< SIZE; j++){
@@ -34,7 +34,7 @@ void boardIn(int *board) {
             }
 }
 
-void printBoard(int *board) {
+void printBoard(char *board) {
     int i, j;
     printf("\nTablero:\n");
     for (i = 0; i < SIZE; i++) {      //for para recorrer renglones y columnas
@@ -68,5 +68,5 @@ int main() {
       boardIn((char*)board);
       printBoard((char*)board);
 
-
+ return 0;
 }
